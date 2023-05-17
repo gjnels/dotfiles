@@ -39,3 +39,10 @@ source ~/dotfiles/zsh/external/completion.zsh
 #-- External Path
 
 fpath=($ZDOTDIR/external $fpath)
+
+
+
+#---------------------------------------
+#-- Prompt
+
+autoload -Uz prompt_purification_setup; prompt_purification_setup
