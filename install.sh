@@ -18,3 +18,12 @@ rm -rf "$HOME/.config/X11"
 
 # link entire X11 directory
 ln -s "$HOME/dotfiles/X11" "$HOME/.config"
+
+
+## i3 ##
+
+# remove directory before creating link
+rm -rf "$HOME/.config/i3"
+
+# link entire i3 directory
+ln -s "$HOME/dotfiles/i3" "$HOME/.config"
