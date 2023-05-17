@@ -27,3 +27,13 @@ rm -rf "$HOME/.config/i3"
 
 # link entire i3 directory
 ln -s "$HOME/dotfiles/i3" "$HOME/.config"
+
+
+## zsh ##
+
+# create directory if it doesn't exist
+mkdir -p "$HOME/.config/zsh"
+
+# link zsh files
+ln -sf "$HOME/dotfiles/zsh/zshenv" "$HOME/.zshenv"
+ln -sf "$HOME/dotfiles/zsh/zshrc" "$HOME/.config/zsh/.zshrc"
