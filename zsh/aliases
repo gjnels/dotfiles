@@ -1,0 +1,33 @@
+#-- Zsh Aliases
+#-- symlink: $HOME/.config/zsh/aliases
+
+
+
+#---------------------------------------
+#-- Neovim
+
+alias vim="nvim"
+
+
+
+#---------------------------------------
+#-- git
+
+alias gs="git status"
+alias gb="git branch"
+alias gbr="git branch -r"
+alias gr="git remote"
+alias grs="git remote show"
+alias gsw="git switch"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+alias gpl="git pull"
+
+
+
+#---------------------------------------
+#-- ls
+
+alias ls="ls --color=auto"
+alias ll="ls -lAh --color=auto"

@@ -1,0 +1,41 @@
+#-- Zsh Configuration
+#-- symlink: $HOME/.config/zsh/.zshrc
+
+
+
+#---------------------------------------
+#-- Zsh Options
+
+# Add trailing slash instead of space for completion with directories
+setopt AUTO_PARAM_SLASH
+
+# Make globbing case insensitive
+unsetopt CASE_GLOB
+
+
+
+#---------------------------------------
+#-- Aliases
+
+source $ZDOTDIR/aliases
+
+
+
+#---------------------------------------
+#-- Zsh Completions
+
+# load autocompletions
+autoload -U compinit; compinit
+
+# autocomplete hidden files
+_comp_options+=(globdots)
+
+# load completion styles
+source ~/dotfiles/zsh/external/completion.zsh
+
+
+
+#---------------------------------------
+#-- External Path
+
+fpath=($ZDOTDIR/external $fpath)

@@ -1,17 +1,23 @@
 #!/bin/bash
 
+#-- Dotfiles Installation Script
 
-## nvim ##
+
+
+#---------------------------------------
+#-- Neovim
 
 # create directories if they don't exist
 mkdir -p "$HOME/.config/nvim"
 mkdir -p "$HOME/.config/nvim/undo"
 
-# link nvim config
+# link Neovim config
 ln -sf "$HOME/dotfiles/nvim/init.vim" "$HOME/.config/nvim"
 
 
-## X11 ##
+
+#---------------------------------------
+#-- X11
 
 # remove directory before creating link
 rm -rf "$HOME/.config/X11"
@@ -20,7 +26,9 @@ rm -rf "$HOME/.config/X11"
 ln -s "$HOME/dotfiles/X11" "$HOME/.config"
 
 
-## i3 ##
+
+#---------------------------------------
+#-- i3
 
 # remove directory before creating link
 rm -rf "$HOME/.config/i3"
@@ -29,11 +37,21 @@ rm -rf "$HOME/.config/i3"
 ln -s "$HOME/dotfiles/i3" "$HOME/.config"
 
 
-## zsh ##
+
+#---------------------------------------
+#-- Zsh
 
 # create directory if it doesn't exist
 mkdir -p "$HOME/.config/zsh"
 
 # link zsh files
+# .zshenv
 ln -sf "$HOME/dotfiles/zsh/zshenv" "$HOME/.zshenv"
+# .zshrc
 ln -sf "$HOME/dotfiles/zsh/zshrc" "$HOME/.config/zsh/.zshrc"
+# aliases
+ln -sf "$HOME/dotfiles/zsh/aliases" "$HOME/.config/zsh/aliases"
+# external configs not written by me
+rm -rf "$HOME/.config/zsh/external"
+ln -s "$HOME/dotfiles/zsh/external" "$HOME/.config/zsh"
+
