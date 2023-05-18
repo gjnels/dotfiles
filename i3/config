@@ -305,3 +305,9 @@ exec urxvtc -name htop_scratchpad -e htop
 
 # load autorandr resolution
 exec autorandr --change
+
+# start dunst notification system
+exec --no-startup-id dunst
+# dunst keyboard shortcuts
+bindsym $mod+x exec dunstctl close-all
+bindsym Ctrl+Backspace exec dunstctl history-pop

@@ -58,3 +58,10 @@ ln -sf "$DOTFILES/zsh/zshenv" "$HOME/.zshenv"
 # .zshrc
 ln -sf "$DOTFILES/zsh/zshrc" "$XDG_CONFIG_HOME/zsh/.zshrc"
 
+
+
+#---------------------------------------
+#-- Dunst Notifications
+
+mkdir -p "$XDG_CONFIG_HOME/dunst"
+ln -sf "$DOTFILES/dunst/dunstrc" "$XDG_CONFIG_HOME/dunst/dunstrc"
