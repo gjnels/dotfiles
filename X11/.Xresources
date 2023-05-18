@@ -43,4 +43,4 @@ URxvt.lineSpace: 0
 URxvt.cursorUnderline: false
 URxvt.saveline: 2048
 URxvt.scrollBar: false
-URxvt.font: xft:DejaVuSansMono:pixelsize=15:antialias=true
+URxvt*font: xft:JetBrainsMono Nerd Font:style=Medium:size=15:pixelsize=16:antialias=true
