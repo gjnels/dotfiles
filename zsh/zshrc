@@ -103,7 +103,7 @@ autoload -Uz prompt_purification_setup; prompt_purification_setup
 #---------------------------------------
 #-- Start i3 Automatically
 
-if [ "$(tty)" = "/dev/tty1"]; then
+if [ "$(tty)" = "/dev/tty1" ]; then
     pgrep i3 || exec startx "$XDG_CONFIG_HOME/X11/.xinitrc"
 fi
 
