@@ -1,0 +1,9 @@
+[user]
+	name = Garrett Nelson
+	email = gjnels@proton.me
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX

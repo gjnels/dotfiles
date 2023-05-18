@@ -79,3 +79,11 @@ ln -sf "$DOTFILES/rofi/config.rasi" "$XDG_CONFIG_HOME/rofi/config.rasi"
 mkdir -p "$XDG_DATA_HOME/rofi"
 rm -rf "$XDG_DATA_HOME/rofi/themes"
 ln -s "$DOTFILES/rofi/themes" "$XDG_DATA_HOME/rofi"
+
+
+
+#---------------------------------------
+#-- Git
+
+rm -rf "$XDG_CONFIG_HOME/git"
+ln -s "$DOTFILES/git" "$XDG_CONFIG_HOME"
