@@ -11,7 +11,7 @@ alias vim="nvim"
 
 
 #---------------------------------------
-#-- git
+#-- Git
 
 alias gs="git status"
 alias gb="git branch"
@@ -27,7 +27,15 @@ alias gpl="git pull"
 
 
 #---------------------------------------
-#-- ls
+#-- List Directory Contents
 
 alias ls="ls --color=auto"
 alias ll="ls -lAh --color=auto"
+
+
+
+#---------------------------------------
+#-- Directory Stack
+
+alias d="dirs -v"
+for index ({1..9}) alias "$index"="cd +${index}"; unset index

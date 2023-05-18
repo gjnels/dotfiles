@@ -4,6 +4,13 @@
 
 
 #---------------------------------------
+#-- External Path
+
+fpath=($DOTFILES/zsh/external $fpath)
+
+
+
+#---------------------------------------
 #-- Zsh Options
 
 # Add trailing slash instead of space for completion with directories
@@ -12,33 +19,77 @@ setopt AUTO_PARAM_SLASH
 # Make globbing case insensitive
 unsetopt CASE_GLOB
 
+# Push current directory visited to the directory stack
+setopt AUTO_PUSHD
+# Do not store duplicate directories in the stack
+setopt PUSHD_IGNORE_DUPS
+# Do not print the directory stack after pushd or popd
+setopt PUSHD_SILENT
+
 
 
 #---------------------------------------
 #-- Aliases
 
-source $ZDOTDIR/aliases
+source $DOTFILES/zsh/aliases
+
+
+
+#---------------------------------------
+#-- Shell Scripts
+
+source $DOTFILES/zsh/scripts.sh
 
 
 
 #---------------------------------------
 #-- Zsh Completions
 
-# load autocompletions
+# Load zsh-completions for more completion options
+fpath=($DOTFILES/zsh/plugins/zsh-completions/src $fpath)
+
+# Load autocompletions
 autoload -U compinit; compinit
 
-# autocomplete hidden files
+# Autocomplete hidden files
 _comp_options+=(globdots)
 
-# load completion styles
+# Load completion styles
 source ~/dotfiles/zsh/external/completion.zsh
 
 
 
 #---------------------------------------
-#-- External Path
+#-- fzf Completions
 
-fpath=($ZDOTDIR/external $fpath)
+if [ $(command -v "fzf") ]; then
+    source /usr/share/fzf/completion.zsh
+    source /usr/share/fzf/key-bindings.zsh
+fi
+
+
+
+#---------------------------------------
+#-- Vim Keybindings
+
+bindkey -v
+export KEYTIMEOUT=1
+
+# Change cursor based on NORMAL or INSERT vi mode
+autoload -Uz cursor_mode && cursor_mode
+
+# Bind hjkl to navigate completion menus
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-up-line-or-history
+bindkey -M menuselect 'k' vi-forward-char
+bindkey -M menuselect 'l' vi-down-line-or-history
+
+# Edit command line commands with EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+# Launch editor with v in NORMAL mode
+bindkey -M vicmd v edit-command-line
 
 
 
@@ -46,3 +97,19 @@ fpath=($ZDOTDIR/external $fpath)
 #-- Prompt
 
 autoload -Uz prompt_purification_setup; prompt_purification_setup
+
+
+
+#---------------------------------------
+#-- Start i3 Automatically
+
+if [ "$(tty)" = "/dev/tty1"]; then
+    pgrep i3 || exec startx "$XDG_CONFIG_HOME/X11/.xinitrc"
+fi
+
+
+
+#---------------------------------------
+#-- Syntax Highlighting
+
+source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

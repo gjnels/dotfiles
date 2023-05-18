@@ -49,9 +49,4 @@ mkdir -p "$HOME/.config/zsh"
 ln -sf "$HOME/dotfiles/zsh/zshenv" "$HOME/.zshenv"
 # .zshrc
 ln -sf "$HOME/dotfiles/zsh/zshrc" "$HOME/.config/zsh/.zshrc"
-# aliases
-ln -sf "$HOME/dotfiles/zsh/aliases" "$HOME/.config/zsh/aliases"
-# external configs not written by me
-rm -rf "$HOME/.config/zsh/external"
-ln -s "$HOME/dotfiles/zsh/external" "$HOME/.config/zsh"
 
