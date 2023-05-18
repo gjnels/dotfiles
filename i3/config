@@ -257,13 +257,15 @@ set $surface0  #313244
 set $base      #1e1e2e
 set $mantle    #181825
 set $crust     #11111b
+# Base for Catppuccin Frappe to match terminal base
+set $frappe_base #303446
 
-# target                 title     bg    text   indicator  border
-client.focused           $mauve    $base $text  $sky       $mauve
-client.focused_inactive  $mauve    $base $text  $sky       $overlay0
-client.unfocused         $mauve    $base $text  $sky       $overlay0
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+# target                 title     bg           text      indicator    border
+client.focused           $mauve    $base        $text     $sky         $mauve
+client.focused_inactive  $base     $frappe_base $subtext0 $frappe_base $frappe_base
+client.unfocused         $base     $frappe_base $subtext0 $frappe_base $frappe_base
+client.urgent            $peach    $base        $peach    $overlay0    $peach
+client.placeholder       $overlay0 $base        $text     $overlay0    $overlay0
 
 client.background $base
 
