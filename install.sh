@@ -65,3 +65,17 @@ ln -sf "$DOTFILES/zsh/zshrc" "$XDG_CONFIG_HOME/zsh/.zshrc"
 
 mkdir -p "$XDG_CONFIG_HOME/dunst"
 ln -sf "$DOTFILES/dunst/dunstrc" "$XDG_CONFIG_HOME/dunst/dunstrc"
+
+
+
+#---------------------------------------
+#-- Rofi
+
+# link config file
+mkdir -p "$XDG_CONFIG_HOME/rofi"
+ln -sf "$DOTFILES/rofi/config.rasi" "$XDG_CONFIG_HOME/rofi/config.rasi"
+
+# link themes
+mkdir -p "$XDG_DATA_HOME/rofi"
+rm -rf "$XDG_DATA_HOME/rofi/themes"
+ln -s "$DOTFILES/rofi/themes" "$XDG_DATA_HOME/rofi"
