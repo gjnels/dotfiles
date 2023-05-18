@@ -5,14 +5,22 @@
 
 
 #---------------------------------------
+#-- Source Environment Variables
+
+SCRIPT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+source "$SCRIPT_DIR/zsh/zshenv"
+
+
+
+#---------------------------------------
 #-- Neovim
 
 # create directories if they don't exist
-mkdir -p "$HOME/.config/nvim"
-mkdir -p "$HOME/.config/nvim/undo"
+mkdir -p "$XDG_CONFIG_HOME/nvim"
+mkdir -p "$XDG_CONFIG_HOME/nvim/undo"
 
 # link Neovim config
-ln -sf "$HOME/dotfiles/nvim/init.vim" "$HOME/.config/nvim"
+ln -sf "$DOTFILES/nvim/init.vim" "$XDG_CONFIG_HOME/nvim"
 
 
 
@@ -20,10 +28,10 @@ ln -sf "$HOME/dotfiles/nvim/init.vim" "$HOME/.config/nvim"
 #-- X11
 
 # remove directory before creating link
-rm -rf "$HOME/.config/X11"
+rm -rf "$XDG_CONFIG_HOME/X11"
 
 # link entire X11 directory
-ln -s "$HOME/dotfiles/X11" "$HOME/.config"
+ln -s "$DOTFILES/X11" "$XDG_CONFIG_HOME"
 
 
 
@@ -31,10 +39,10 @@ ln -s "$HOME/dotfiles/X11" "$HOME/.config"
 #-- i3
 
 # remove directory before creating link
-rm -rf "$HOME/.config/i3"
+rm -rf "$XDG_CONFIG_HOME/i3"
 
 # link entire i3 directory
-ln -s "$HOME/dotfiles/i3" "$HOME/.config"
+ln -s "$DOTFILES/i3" "$XDG_CONFIG_HOME"
 
 
 
@@ -42,11 +50,11 @@ ln -s "$HOME/dotfiles/i3" "$HOME/.config"
 #-- Zsh
 
 # create directory if it doesn't exist
-mkdir -p "$HOME/.config/zsh"
+mkdir -p "$XDG_CONFIG_HOME/zsh"
 
 # link zsh files
 # .zshenv
-ln -sf "$HOME/dotfiles/zsh/zshenv" "$HOME/.zshenv"
+ln -sf "$DOTFILES/zsh/zshenv" "$HOME/.zshenv"
 # .zshrc
-ln -sf "$HOME/dotfiles/zsh/zshrc" "$HOME/.config/zsh/.zshrc"
+ln -sf "$DOTFILES/zsh/zshrc" "$XDG_CONFIG_HOME/zsh/.zshrc"
 
