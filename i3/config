@@ -292,6 +292,8 @@ bar {
 
 # remove urxvt top border
 for_window [class="URxvt*"] border pixel 1
+# remove firefox top border
+for_window [class="firefox"] border pixel 1
 
 # terminal scratchpad
 for_window [instance="urxvt_scratchpad"] move to scratchpad, border pixel 1
