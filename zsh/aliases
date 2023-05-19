@@ -4,6 +4,22 @@
 
 
 #---------------------------------------
+#-- Zsh
+
+alias zrc='nvim "$ZDOTDIR/.zshrc"'
+alias zsrc='source "$ZDOTDIR/.zshrc"'
+
+
+
+#---------------------------------------
+#-- Directory Stack
+
+alias d="dirs -v"
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
+
+
+#---------------------------------------
 #-- Neovim
 
 alias vim="nvim"
@@ -23,19 +39,41 @@ alias ga="git add"
 alias gc="git commit"
 alias gp="git push"
 alias gpl="git pull"
+alias gd="git diff"
+# git log graphs
+# see: https://stackoverflow.com/questions/1838873/visualizing-branch-topology-in-git/34467298#34467298
+alias gl="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
+alias gl2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
+alias gl3="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'"
 
 
 
 #---------------------------------------
 #-- List Directory Contents
 
+# default ls
 alias ls="ls --color=auto"
 alias ll="ls -lAh --color=auto"
+
+# use exa if installed
+if [[ $(command -v exa) ]]; then
+    alias ls="exa -a1 --icons"
+    alias ll="exa -al --git --icons"
+    alias lt="exa -a --tree --git --icons"
+fi
 
 
 
 #---------------------------------------
-#-- Directory Stack
+#-- Safer Copy/Move/Remove
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
 
-alias d="dirs -v"
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
+
+#---------------------------------------
+# Grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
