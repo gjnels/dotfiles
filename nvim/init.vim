@@ -2,20 +2,23 @@
 "-- Keymaps
 
 " set leader to <space>
-nnoremap <space> <nop>
+nnoremap <Space> <Nop>
 let mapleader = "\<space>"
 
 " next buffer
-nnoremap <leader>bn :bn<cr>
+nnoremap <Leader>bn :bn<CR>
 
 " next tab
-nnoremap <leader>tn gt
+nnoremap <Leader>tn gt
 
 " force use of hjkl for movement
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+" split window horizontally
+nnoremap <C-w>h <C-w>s
 
 
 

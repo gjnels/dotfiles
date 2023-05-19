@@ -87,3 +87,16 @@ ln -s "$DOTFILES/rofi/themes" "$XDG_DATA_HOME/rofi"
 
 rm -rf "$XDG_CONFIG_HOME/git"
 ln -s "$DOTFILES/git" "$XDG_CONFIG_HOME"
+
+
+
+#---------------------------------------
+#-- Tmux
+
+mkdir -p "$XDG_CONFIG_HOME/tmux"
+ln -sf "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
+
+# install tmux plugin manager if not already installed
+[ ! -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ] \
+    && git clone https://github.com/tmux-plugins/tpm \
+    "$XDG_CONFIG_HOME/tmux/plugins/tmux"
