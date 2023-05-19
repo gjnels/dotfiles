@@ -296,9 +296,15 @@ for_window [class="URxvt*"] border pixel 1
 for_window [class="firefox"] border pixel 1
 
 # terminal scratchpad
-for_window [instance="urxvt_scratchpad"] move to scratchpad, border pixel 1
-bindsym $mod+Shift+t [instance="urxvt_scratchpad"] scratchpad show
-exec urxvtc -name urxvt_scratchpad
+for_window [instance="terminal_scratchpad"] move to scratchpad, border pixel 1
+bindsym $mod+Shift+t [instance="terminal_scratchpad"] scratchpad show
+exec urxvtc -name terminal_scratchpad
+
+# neovim scratchpad
+for_window [instance="neovim_scratchpad"] move to scratchpad, border pixel 1
+bindsym $mod+Shift+n [instance="neovim_scratchpad"] scratchpad show
+exec urxvtc -name neovim_scratchpad \
+-e tmux new-session -AD -s neovim_scratchpad -n vim 'nvim +e /tmp/nvim-temp.md'
 
 # htop scratchpad
 for_window [instance="htop_scratchpad"] move to scratchpad, border pixel 1
