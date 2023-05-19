@@ -15,12 +15,15 @@ source "$SCRIPT_DIR/zsh/zshenv"
 #---------------------------------------
 #-- Neovim
 
-# create directories if they don't exist
-mkdir -p "$XDG_CONFIG_HOME/nvim"
-mkdir -p "$XDG_CONFIG_HOME/nvim/undo"
+# remove Neovim config and data if present
+rm -rf "$XDG_CONFIG_HOME/nvim"
+rm -rf "$XDG_DATA_HOME/nvim"
+
+# create undo directory
+mkdir -p "$XDG_DATA_HOME/nvim/undo"
 
 # link Neovim config
-ln -sf "$DOTFILES/nvim/init.vim" "$XDG_CONFIG_HOME/nvim"
+ln -s "$DOTFILES/nvim" "$XDG_CONFIG_HOME"
 
 
 
