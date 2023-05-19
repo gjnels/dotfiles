@@ -10,46 +10,82 @@
 vim.g.mapleader = ' '
 vim.g.localleader = ' '
 
-local opt = vim.opt
+local o = vim.opt
 
 -- line numbers
-opt.number = true
-opt.relativenumber = true
+o.number = true
 
 -- Indenting
-opt.expandtab = true
-opt.shiftwidth = 2
-opt.smartindent = true
-opt.tabstop = 2
-opt.softtabstop = 2
+o.expandtab = true
+o.shiftwidth = 2
+o.smartindent = true
+o.tabstop = 2
+o.softtabstop = 2
+o.breakindent = true
 
 -- mouse
-opt.mouse = 'a'
+o.mouse = 'a'
 
 -- search
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = false
+o.ignorecase = true
+o.smartcase = true
+o.hlsearch = false
 
 -- undo
-opt.undofile = true
+o.undofile = true
 
 -- disable swapfile
-opt.swapfile = false
+o.swapfile = false
 
 -- enable system clipboard
-opt.clipboard = 'unnamedplus'
+o.clipboard = 'unnamedplus'
+
+-- keep sign column on by default
+o.signcolumn = 'yes'
+
+-- decrease update time
+o.updatetime = 250
+o.timeout = true
+o.timeoutlen = 300
+
+-- better completion experience
+o.completeopt = 'menuone,noselect'
+
+-- enable true color
+o.termguicolors = true
 
 
 
 --------------------------------------------------------------------------------
 -- Keymaps
 
+-- remove mapping of space (which is remapped to leader)
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
 -- escape insert mode
-vim.keymap.set('i', 'jk', '<ESC>', {desc = 'Escape insert mode'})
+vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Escape insert mode'} )
 
 -- easier file save
-vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', {desc = '[S]ave file'})
+vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', { desc = '[S]ave file'} )
 
 -- clear search highlighting
-vim.keymap.set('n', '<ESC>', '<cmd> noh <CR>', {desc = 'Clear search results highlights'})
+vim.keymap.set('n', '<ESC>', '<cmd> noh <CR>', { desc = 'Clear search results highlights' })
+
+-- handle word wrap when navigating up and down lines
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+
+
+--------------------------------------------------------------------------------
+-- Highlight on Yank
+
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
