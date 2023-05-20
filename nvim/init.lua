@@ -52,6 +52,14 @@ require('lazy').setup({
       { 'williamboman/mason.nvim', config = true, build = ':MasonUpdate' },
       'williamboman/mason-lspconfig.nvim',
 
+      -- null-ls formatters
+      {
+        'jose-elias-alvarez/null-ls.nvim',
+        config = function()
+          require 'configs.null-ls'
+        end,
+      },
+
       -- status updates for LSP
       {
         'j-hui/fidget.nvim',
@@ -305,7 +313,8 @@ vim.keymap.set('n', '<Leader>sd', require('telescope.builtin').diagnostics, { de
 
 require('nvim-treesitter.configs').setup {
   -- languages always installed
-  ensure_installed = { 'go', 'html', 'javascript', 'json', 'json5', 'jsonc', 'lua', 'svelte', 'tsx', 'typescript',
+  ensure_installed = { 'bash', 'go', 'html', 'javascript', 'json', 'json5', 'jsonc', 'lua', 'svelte', 'tsx',
+    'typescript',
     'vimdoc', 'vim' },
 
   highlight = { enable = true },
@@ -429,6 +438,7 @@ require('mason').setup({
 
 -- language servers to enable by default
 local servers = {
+  bashls = {},
   gopls = {},
   tsserver = {},
   lua_ls = {
