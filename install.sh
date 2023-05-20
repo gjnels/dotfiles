@@ -59,6 +59,14 @@ ln -sf "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
 
 
 #-------------------------------------------------------------------------------
+#-- Tmuxp
+
+rm -rf "$XDG_CONFIG_HOME/tmuxp"
+ln -s "$DOTFILES/tmuxp" "$XDG_CONFIG_HOME"
+
+
+
+#-------------------------------------------------------------------------------
 #-- Starship Prompt
 
 rm -rf "$XDG_CONFIG_HOME/starship"
