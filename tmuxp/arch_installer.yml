@@ -1,0 +1,13 @@
+session_name: arch_installer
+start_directory: $WORKSPACE/arch_installer
+
+windows:
+  - window_name: vim
+    layout: tiled
+    panes:
+      - nvim
+  - window_name: cli
+    layout: tiled
+    panes:
+      -
+      - bash
