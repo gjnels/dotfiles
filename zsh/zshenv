@@ -43,6 +43,15 @@ export SAVEHIST=10000
 
 
 #-------------------------------------------------------------------------------
+#-- Workspace Directory
+
+# all projects go in $WORKSPACE directory
+
+export WORKSPACE="$HOME/workspace"
+
+
+
+#-------------------------------------------------------------------------------
 #-- Dotfiles Repository
 
 export DOTFILES="$HOME/dotfiles"
