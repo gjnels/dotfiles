@@ -70,6 +70,14 @@ ln -s "$DOTFILES/starship" "$XDG_CONFIG_HOME"
 
 
 #-------------------------------------------------------------------------------
+#-- Kitty
+
+rm -rf "$XDG_CONFIG_HOME/kitty"
+ln -s "$DOTFILES/kitty" "$XDG_CONFIG_HOME"
+
+
+
+#-------------------------------------------------------------------------------
 #-- Linux Environment Variables
 
 if [[ $(uname) == "Linux" ]]; then
