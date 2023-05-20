@@ -43,6 +43,13 @@ source $DOTFILES/zsh/scripts.sh
 
 
 #---------------------------------------
+#-- Node Version Manager
+
+source /usr/share/nvm/init-nvm.sh
+
+
+
+#---------------------------------------
 #-- Zsh Completions
 
 # Load zsh-completions for more completion options
@@ -106,6 +113,16 @@ autoload -Uz prompt_purification_setup; prompt_purification_setup
 if [ "$(tty)" = "/dev/tty1" ]; then
     pgrep i3 || exec startx "$XDG_CONFIG_HOME/X11/.xinitrc"
 fi
+
+
+
+#---------------------------------------
+#-- pnpm Path
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 
 
