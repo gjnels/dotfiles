@@ -1,8 +1,6 @@
 --------------------------------------------------------------------------------
 -- NeoVim Configuration
 
-
-
 --------------------------------------------------------------------------------
 -- Leader Key
 
@@ -10,25 +8,21 @@
 vim.g.mapleader = ' '
 vim.g.localleader = ' '
 
-
-
 --------------------------------------------------------------------------------
 -- Install Package Manager
 
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
+  vim.fn.system({
     'git',
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
     '--branch=stable',
     lazypath,
-  }
+  })
 end
 vim.opt.rtp:prepend(lazypath)
-
-
 
 --------------------------------------------------------------------------------
 -- Configure Plugins
@@ -56,7 +50,7 @@ require('lazy').setup({
       {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
-          require 'configs.null-ls'
+          require('configs.null-ls')
         end,
       },
 
@@ -104,7 +98,7 @@ require('lazy').setup({
         vim.keymap.set('n', '[c', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
         vim.keymap.set('n', ']c', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
         vim.keymap.set('n', '<Leader>ph', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
-      end
+      end,
     },
   },
 
@@ -158,7 +152,7 @@ require('lazy').setup({
     'nvim-telescope/telescope-fzf-native.nvim',
     build = 'make',
     cond = function()
-      return vim.fn.executable 'make' == 1
+      return vim.fn.executable('make') == 1
     end,
   },
 
@@ -171,13 +165,8 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  -- TODO: move plugins to lua/custom/plugins or lua/plugins
-  -- { import = 'customs.plugins' }
-  { import = 'plugins' }
-
+  { import = 'plugins' },
 }, {})
-
-
 
 --------------------------------------------------------------------------------
 -- Vim Options
@@ -230,8 +219,6 @@ o.termguicolors = true
 -- enable catppuccin colorscheme
 -- vim.cmd.colorscheme 'catppuccin'
 
-
-
 --------------------------------------------------------------------------------
 -- Keymaps
 
@@ -251,8 +238,6 @@ vim.keymap.set('n', '<ESC>', '<cmd> noh <CR>', { desc = 'Clear search results hi
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-
-
 --------------------------------------------------------------------------------
 -- Highlight on Yank
 
@@ -265,14 +250,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
-
-
 --------------------------------------------------------------------------------
 -- Configure Telescope
 
 -- see: `:h telescope` or `:h telescope.setup()`
 
-require('telescope').setup {
+require('telescope').setup({
   defaults = {
     mappings = {
       i = {
@@ -281,7 +264,7 @@ require('telescope').setup {
       },
     },
   },
-}
+})
 
 -- enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -292,10 +275,10 @@ vim.keymap.set('n', '<Leader>?', require('telescope.builtin').oldfiles, { desc =
 vim.keymap.set('n', '<Leader><Space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<Leader>/', function()
   -- optionally pass additional configuration to telescope to change theme, layout, etc
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
     windblend = 10,
     previewer = true,
-  })
+  }))
 end, { desc = '[ ] Find recently opened files' })
 vim.keymap.set('n', '<Leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<Leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
@@ -304,18 +287,28 @@ vim.keymap.set('n', '<Leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<Leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<Leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
-
-
 --------------------------------------------------------------------------------
 -- Configure Treesitter
 
 -- see: `:h nvim-treesitter`
 
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.configs').setup({
   -- languages always installed
-  ensure_installed = { 'bash', 'go', 'html', 'javascript', 'json', 'json5', 'jsonc', 'lua', 'svelte', 'tsx',
+  ensure_installed = {
+    'bash',
+    'go',
+    'html',
+    'javascript',
+    'json',
+    'json5',
+    'jsonc',
+    'lua',
+    'svelte',
+    'tsx',
     'typescript',
-    'vimdoc', 'vim' },
+    'vimdoc',
+    'vim',
+  },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -372,9 +365,7 @@ require('nvim-treesitter.configs').setup {
       },
     },
   },
-}
-
-
+})
 
 --------------------------------------------------------------------------------
 -- Diagnostics Keymaps
@@ -383,8 +374,6 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic list' })
-
-
 
 --------------------------------------------------------------------------------
 -- LSP Settings
@@ -454,48 +443,46 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- ensure servers listed above are installed
-local mason_lspconfig = require 'mason-lspconfig'
+local mason_lspconfig = require('mason-lspconfig')
 
-mason_lspconfig.setup {
+mason_lspconfig.setup({
   ensure_installed = vim.tbl_keys(servers),
-}
+})
 
-mason_lspconfig.setup_handlers {
+mason_lspconfig.setup_handlers({
   function(server_name)
-    require('lspconfig')[server_name].setup {
+    require('lspconfig')[server_name].setup({
       capabilities = capabilities,
       on_attach = on_attach,
       settings = servers[server_name],
-    }
+    })
   end,
-}
-
-
+})
 
 --------------------------------------------------------------------------------
 -- nvim-cmp Setup
 
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
+local cmp = require('cmp')
+local luasnip = require('luasnip')
 require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup {}
+luasnip.config.setup({})
 
-cmp.setup {
+cmp.setup({
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
-  mapping = cmp.mapping.preset.insert {
+  mapping = cmp.mapping.preset.insert({
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<C-Space>'] = cmp.mapping.complete({}),
+    ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
-    },
+    }),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -514,9 +501,9 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
-  },
+  }),
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },
-}
+})

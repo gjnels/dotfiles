@@ -1,4 +1,4 @@
-local nls = require 'null-ls'
+local nls = require('null-ls')
 
 local formatting = nls.builtins.formatting
 
@@ -8,7 +8,7 @@ local sources = {
   formatting.beautysh,
 }
 
-nls.setup {
+nls.setup({
   debug = true,
-  sources = sources
-}
+  sources = sources,
+})
