@@ -62,6 +62,14 @@ ln -sf "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
 
 
 #-------------------------------------------------------------------------------
+#-- Starship Prompt
+
+rm -rf "$XDG_CONFIG_HOME/starship"
+ln -s "$DOTFILES/starship" "$XDG_CONFIG_HOME"
+
+
+
+#-------------------------------------------------------------------------------
 #-- Linux Environment Variables
 
 if [[ $(uname) == "Linux" ]]; then

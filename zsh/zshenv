@@ -3,7 +3,7 @@
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- XDG Base Directory
 
 # for dotfiles
@@ -20,7 +20,7 @@ export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Editors
 
 export EDITOR="nvim"
@@ -28,7 +28,7 @@ export VISUAL="nvim"
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Zsh
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
@@ -42,15 +42,37 @@ export SAVEHIST=10000
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Dotfiles Repository
 
 export DOTFILES="$HOME/dotfiles"
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Use ripgrep With fzf
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
+
+#-------------------------------------------------------------------------------
+#-- Node Version Manager
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+
+
+
+#-------------------------------------------------------------------------------
+#-- Homebrew Path (macos only)
+
+if [[ $(uname) == "Darwin" ]]; then
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+fi
+
+
+
+#-------------------------------------------------------------------------------
+#-- Starship Prompt
+
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"

@@ -3,14 +3,14 @@
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- External Path
 
 fpath=($DOTFILES/zsh/external $fpath)
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Zsh Options
 
 # Add trailing slash instead of space for completion with directories
@@ -28,35 +28,41 @@ setopt PUSHD_SILENT
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Aliases
 
 source $DOTFILES/zsh/aliases
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Shell Scripts
 
 source $DOTFILES/zsh/scripts.sh
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Node Version Manager
 
-source /usr/share/nvm/init-nvm.sh
+if [[ $(uname) == 'Darwin' ]]; then
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"                                       # This loads nvm
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+else
+    source /usr/share/nvm/init-nvm.sh
+fi
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Zsh Completions
 
 # Load zsh-completions for more completion options
 fpath=($DOTFILES/zsh/plugins/zsh-completions/src $fpath)
 
 # Load autocompletions
-autoload -U compinit; compinit
+autoload -U compinit
+compinit
 
 # Autocomplete hidden files
 _comp_options+=(globdots)
@@ -66,17 +72,19 @@ source ~/dotfiles/zsh/external/completion.zsh
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- fzf Completions
 
 if [ $(command -v "fzf") ]; then
-    source /usr/share/fzf/completion.zsh
-    source /usr/share/fzf/key-bindings.zsh
+    if [[ $(uname) == "Linux" ]]; then
+        source /usr/share/fzf/completion.zsh
+        source /usr/share/fzf/key-bindings.zsh
+    fi
 fi
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Vim Keybindings
 
 bindkey -v
@@ -100,14 +108,7 @@ bindkey -M vicmd v edit-command-line
 
 
 
-#---------------------------------------
-#-- Prompt
-
-autoload -Uz prompt_purification_setup; prompt_purification_setup
-
-
-
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- Start i3 Automatically
 
 if [ "$(tty)" = "/dev/tty1" ]; then
@@ -116,17 +117,21 @@ fi
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
 #-- pnpm Path
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
 
 
-#---------------------------------------
+#-------------------------------------------------------------------------------
+#-- Prompt
+
+eval "$(starship init zsh)"
+#-------------------------------------------------------------------------------
 #-- Syntax Highlighting
 
 source $DOTFILES/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
