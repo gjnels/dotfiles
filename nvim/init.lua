@@ -101,11 +101,11 @@ require('lazy').setup({
   },
 
   -- catppuccin theme
-  {
+  --[[ {
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
-  },
+  }, ]]
 
   -- set lualine as statusline
   {
@@ -165,7 +165,7 @@ require('lazy').setup({
 
   -- TODO: move plugins to lua/custom/plugins or lua/plugins
   -- { import = 'customs.plugins' }
-  -- { import = 'plugins' }
+  { import = 'plugins' }
 
 }, {})
 
@@ -220,7 +220,7 @@ o.completeopt = 'menuone,noselect'
 o.termguicolors = true
 
 -- enable catppuccin colorscheme
-vim.cmd.colorscheme 'catppuccin'
+-- vim.cmd.colorscheme 'catppuccin'
 
 
 
@@ -489,7 +489,7 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpback() then
+      elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       else
         fallback()
