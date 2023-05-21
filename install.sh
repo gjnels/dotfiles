@@ -54,7 +54,7 @@ ln -sf "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
 # install tmux plugin manager if not already installed
 [ ! -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ] \
     && git clone https://github.com/tmux-plugins/tpm \
-    "$XDG_CONFIG_HOME/tmux/plugins/tmux"
+    "$XDG_CONFIG_HOME/tmux/plugins/tpm"
 
 
 
