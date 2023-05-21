@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 font pango:JetBrainsMono Nerd Font 12
 
@@ -43,7 +43,8 @@ floating_modifier $mod
 #tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec urxvtc
+# bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -145,6 +146,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # bind applications
 assign [class="URxvt" instance="urxvt"] $ws1
+assign [class="kitty" instance="kitty"] $ws1
 assign [class="firefox" instance="Navigator"] $ws2
 
 # change to previous workspace by entering the same keystroke that got to
@@ -292,13 +294,15 @@ bar {
 
 # remove urxvt top border
 for_window [class="URxvt*"] border pixel 1
+# remove kitty top border
+for_window [class="kitty"] border pixel 1
 # remove firefox top border
 for_window [class="firefox"] border pixel 1
 
 # terminal scratchpad
 for_window [instance="terminal_scratchpad"] move to scratchpad, border pixel 1
 bindsym $mod+Shift+t [instance="terminal_scratchpad"] scratchpad show
-exec urxvtc -name terminal_scratchpad
+exec kitty -name terminal_scratchpad
 
 # neovim scratchpad
 for_window [instance="neovim_scratchpad"] move to scratchpad, border pixel 1
@@ -309,7 +313,7 @@ exec urxvtc -name neovim_scratchpad \
 # htop scratchpad
 for_window [instance="htop_scratchpad"] move to scratchpad, border pixel 1
 bindsym $mod+Shift+p [instance="htop_scratchpad"] scratchpad show
-exec urxvtc -name htop_scratchpad -e htop
+exec kitty -name htop_scratchpad -e htop
 
 # load autorandr resolution
 exec autorandr --change
