@@ -2,11 +2,11 @@ session_name: dotfiles
 start_directory: $HOME/dotfiles
 
 windows:
-  - window_name: nvim dotfiles
-    layout: tiled
+  - layout: tiled
     panes:
-      - nvim +FZF
-  - window_name: cli
-    layout: tiled
+      - nvim "+Telescope find_files"
+    window_name: nvim dotfiles
+  - layout: tiled
     panes:
-      - ls -lAh
+      - exa -a1 --icons --git
+    window_name: cli
