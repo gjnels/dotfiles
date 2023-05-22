@@ -147,7 +147,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # bind applications
 assign [class="URxvt" instance="urxvt"] $ws1
 assign [class="kitty" instance="kitty"] $ws1
-assign [class="firefox" instance="Navigator"] $ws2
+# assign [class="firefox" instance="Navigator"] $ws2
 
 # change to previous workspace by entering the same keystroke that got to
 # current workspace
