@@ -17,7 +17,7 @@ ftmuxp() {
     fi
 
     # get tmuxp layout names (removing .yml extension)
-    ID="$(ls $XDG_CONFIG_HOME/tmuxp | sed -e 's/\.yml$//')"
+    ID="$(tmuxp ls)"
 
     # start basic tmux session if no tmuxp layouts found
     if [[ -z "$ID" ]]; then
