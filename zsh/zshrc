@@ -112,7 +112,7 @@ bindkey -M vicmd v edit-command-line
 #-- Start i3 Automatically
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-    pgrep i3 || exec startx "$XDG_CONFIG_HOME/X11/.xinitrc"
+    pgrep i3 || exec startx "$XDG_CONFIG_HOME/X11/.xinitrc" -- vt1 &>/dev/null
 fi
 
 
