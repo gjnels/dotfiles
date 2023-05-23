@@ -1,3 +1,9 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- Additional keymaps to add to LazyVim
+
+vim.keymap.set("i", "jk", "<esc>", { silent = true, desc = "Escape insert mode" })
+
+-- navigate windows between neovim and tmux
+vim.keymap.set("n", "<c-h>", "<cmd>TmuxNavigateLeft<cr>", { silent = true, desc = "Move to left window" })
+vim.keymap.set("n", "<c-j>", "<cmd>TmuxNavigateUp<cr>", { silent = true, desc = "Move to upper window" })
+vim.keymap.set("n", "<c-k>", "<cmd>TmuxNavigateDown<cr>", { silent = true, desc = "Move to lower window" })
+vim.keymap.set("n", "<c-l>", "<cmd>TmuxNavigateRight<cr>", { silent = true, desc = "Move to right window" })
