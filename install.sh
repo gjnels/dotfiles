@@ -4,26 +4,26 @@
 
 # show status of each configuration
 status() {
-    echo "$1"
-    echo "Configuration linked to: $2"
-    echo ""
+	echo "> $1"
+	echo "Configuration linked to: $2"
+	echo ""
 }
 
 echo ""
 echo "Installing dotfiles..."
 echo ""
+
 #-------------------------------------------------------------------------------
 #-- Source Environment Variables
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 source "$SCRIPT_DIR/zsh/zshenv"
 
-
 #-------------------------------------------------------------------------------
 #-- Workspace Directory
 
 mkdir -p "$WORKSPACE"
-echo "Created workspace directory: $WORKSPACE"
+echo "Workspace directory: $WORKSPACE"
 echo ""
 
 #-------------------------------------------------------------------------------
@@ -60,9 +60,9 @@ mkdir -p "$TMUX_DIR"
 ln -sf "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
 
 # install tmux plugin manager if not already installed
-[ ! -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ] \
-    && git clone https://github.com/tmux-plugins/tpm \
-    "$XDG_CONFIG_HOME/tmux/plugins/tpm"
+[ ! -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ] &&
+	git clone https://github.com/tmux-plugins/tpm \
+		"$XDG_CONFIG_HOME/tmux/plugins/tpm"
 
 status "Tmux" "$TMUX_DIR"
 
@@ -97,31 +97,31 @@ status "Kitty Terminal" "$KITTY_DIR"
 #-- Linux Environment Variables
 
 if [[ $(uname) == "Linux" ]]; then
-    #-- X11
-    X11_DIR="$XDG_CONFIG_HOME/X11"
-    rm -rf "$X11_DIR"
-    ln -s "$DOTFILES/X11" "$XDG_CONFIG_HOME"
-    status "X11" "$X11_DIR"
+	#-- X11
+	X11_DIR="$XDG_CONFIG_HOME/X11"
+	rm -rf "$X11_DIR"
+	ln -s "$DOTFILES/X11" "$XDG_CONFIG_HOME"
+	status "X11" "$X11_DIR"
 
-    #-- i3
-    I3_DIR="$XDG_CONFIG_HOME/i3"
-    rm -rf "$I3_DIR"
-    ln -s "$DOTFILES/i3" "$XDG_CONFIG_HOME"
-    status "i3 Window Manager" "$I3_DIR"
+	#-- i3
+	I3_DIR="$XDG_CONFIG_HOME/i3"
+	rm -rf "$I3_DIR"
+	ln -s "$DOTFILES/i3" "$XDG_CONFIG_HOME"
+	status "i3 Window Manager" "$I3_DIR"
 
-    #-- Dunst Notifications
-    DUNST_DIR="$XDG_CONFIG_HOME/dunst"
-    mkdir -p "$DUNST_DIR"
-    ln -sf "$DOTFILES/dunst/dunstrc" "$XDG_CONFIG_HOME/dunst/dunstrc"
-    status "Dunst Notifications" "$DUNST_DIR"
+	#-- Dunst Notifications
+	DUNST_DIR="$XDG_CONFIG_HOME/dunst"
+	mkdir -p "$DUNST_DIR"
+	ln -sf "$DOTFILES/dunst/dunstrc" "$XDG_CONFIG_HOME/dunst/dunstrc"
+	status "Dunst Notifications" "$DUNST_DIR"
 
-    #-- Rofi
-    ROFI_DIR="$XDG_CONFIG_HOME/rofi"
-    mkdir -p "$ROFI_DIR"
-    ln -sf "$DOTFILES/rofi/config.rasi" "$XDG_CONFIG_HOME/rofi/config.rasi"
-    # themes
-    mkdir -p "$XDG_DATA_HOME/rofi"
-    rm -rf "$XDG_DATA_HOME/rofi/themes"
-    ln -s "$DOTFILES/rofi/themes" "$XDG_DATA_HOME/rofi"
-    status "Rofi Application Launcher" "$ROFI_DIR"
+	#-- Rofi
+	ROFI_DIR="$XDG_CONFIG_HOME/rofi"
+	mkdir -p "$ROFI_DIR"
+	ln -sf "$DOTFILES/rofi/config.rasi" "$XDG_CONFIG_HOME/rofi/config.rasi"
+	# themes
+	mkdir -p "$XDG_DATA_HOME/rofi"
+	rm -rf "$XDG_DATA_HOME/rofi/themes"
+	ln -s "$DOTFILES/rofi/themes" "$XDG_DATA_HOME/rofi"
+	status "Rofi Application Launcher" "$ROFI_DIR"
 fi
