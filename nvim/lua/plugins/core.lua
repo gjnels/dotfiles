@@ -11,4 +11,11 @@ return {
     opts = require('plugins.configs.nvim-autopairs').opts,
     config = require('plugins.configs.nvim-autopairs').config,
   },
+
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    opts = require('plugins.configs.which-key').opts,
+    config = require('plugins.configs.which-key').config,
+  },
 }
