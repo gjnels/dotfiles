@@ -44,7 +44,6 @@ return {
   LSPLoading2 = '󰀚',
   LSPLoading3 = '',
   MacroRecording = '',
-  Mason = '󰈮',
   Package = '󰏖',
   Paste = '󰅌',
   Refresh = '',

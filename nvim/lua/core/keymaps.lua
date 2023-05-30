@@ -7,7 +7,6 @@ local get_icon = utils.get_icon
 local sections = {
   f = { desc = get_icon('Search', 1) .. 'Find' },
   p = { desc = get_icon('Package', 1) .. 'Packages' },
-  m = { desc = get_icon('Mason', 1) .. 'Mason' },
   l = { desc = get_icon('ActiveLSP', 1) .. 'LSP' },
   u = { desc = get_icon('Window', 1) .. 'UI' },
   b = { desc = get_icon('Tab', 1) .. 'Buffers' },
@@ -55,10 +54,8 @@ keymaps.n['<leader>ph'] = { function() lazy.health() end, desc = 'Check lazy.nvi
 
 -- Mason.nvim
 if utils.has('mason') then
-  keymaps.n['<leader>m'] = sections.m
-  keymaps.n['<leader>mo'] = { '<cmd>Mason<cr>', desc = 'Open Mason' }
-  keymaps.n['<leader>mc'] = { '<cmd>Mason<cr>C', desc = 'Check for Mason Package Updates' }
-  keymaps.n['<leader>mu'] = { '<cmd>Mason<cr>U', desc = 'Update Mason Packages' }
+  keymaps.n['<leader>pm'] = { '<cmd>Mason<cr>', desc = 'Open Mason' }
+  keymaps.n['<leader>pM'] = { '<cmd>Mason<cr>U', desc = 'Update Mason Packages' }
 end
 
 -- Buffers
