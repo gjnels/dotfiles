@@ -1,10 +1,13 @@
-local augroup = vim.api.nvim_create_augroup
+local augroup = function (name, opts)
+  opts = opts or {}
+  vim.api.nvim_create_augroup(name, opts)
+end
 local autocmd = vim.api.nvim_create_autocmd
 local Util = require('core.utils')
 
 autocmd('TextYankPost', {
   desc = 'Highlight on yank',
-  group = augroup('yank_highlight', { clear = true }),
+  group = augroup('yank_highlight'),
   pattern = '*',
   callback = function()
     vim.highlight.on_yank()
@@ -13,7 +16,7 @@ autocmd('TextYankPost', {
 
 autocmd('BufWinEnter', {
   desc = 'Make q close help, man, quickfix, dap floats',
-  group = augroup('q_close_windows', { clear = true }),
+  group = augroup('q_close_windows'),
   callback = function(event)
     local filetype = vim.api.nvim_get_option_value('filetype', { buf = event.buf })
     local buftype = vim.api.nvim_get_option_value('buftype', { buf = event.buf })
@@ -25,7 +28,7 @@ autocmd('BufWinEnter', {
 
 autocmd('BufWinEnter', {
   desc = 'Detect file indentation',
-  group = augroup('indentation_settings', { clear = true }),
+  group = augroup('indentation_settings'),
   callback = function(args)
     -- Run editor config
     require('editorconfig').config(args.buf)
@@ -43,7 +46,7 @@ autocmd('BufWinEnter', {
 
 autocmd('FileType', {
   desc = 'Restore cursor position',
-  group = augroup('restore_cursor_position', { clear = true }),
+  group = augroup('restore_cursor_position'),
   callback = function()
     local exclude = { diff = true, gitcommit = true, gitrebase = true }
     local position_line = vim.api.nvim_buf_get_mark(0, [["]])[1]
@@ -58,7 +61,7 @@ autocmd('FileType', {
 
 autocmd('CursorHold', {
   desc = 'Check if any buffers were changed outside of nvim on cursor hold',
-  group = augroup('check_external_file_changes', { clear = true }),
+  group = augroup('check_external_file_changes'),
   callback = function()
     vim.cmd.checktime({
       mods = { emsg_silent = true },
@@ -68,7 +71,7 @@ autocmd('CursorHold', {
 
 autocmd('VimResized', {
   desc = 'Resize splits when vim is resized',
-  group = augroup('check_window_resized', { clear = true }),
+  group = augroup('check_window_resized'),
   callback = function()
     if vim.api.nvim_get_mode().mode ~= 'n' then
       vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-\>\<c-n>"]]), 'n', false)
@@ -79,7 +82,7 @@ autocmd('VimResized', {
 
 autocmd('BufEnter', {
   desc = 'Quit Neovim if more than one window is open and only sidebar windows are list',
-  group = augroup('auto_quit', { clear = true }),
+  group = augroup('auto_quit'),
   callback = function()
     local wins = vim.api.nvim_tabpage_list_wins(0)
     -- Both neo-tree and aerial will auto-quit if there is only a single window left
@@ -110,7 +113,7 @@ autocmd('BufEnter', {
 })
 
 if Util.has('alpha-nvim') then
-  local group_name = augroup('dashboard_settings', { clear = true })
+  local group_name = augroup('dashboard_settings')
   autocmd({ 'User', 'BufEnter' }, {
     desc = 'Disable status and tablines for alpha',
     group = group_name,
@@ -158,7 +161,7 @@ end
 if Util.has('neo-tree.nvim') then
   autocmd('BufEnter', {
     desc = 'Open Neo-Tree on startup with directory',
-    group = augroup('neotree_start', { clear = true }),
+    group = augroup('neotree_start'),
     callback = function()
       if package.loaded['neo-tree'] then
         vim.api.nvim_del_augroup_by_name('neotree_start')
@@ -174,7 +177,7 @@ if Util.has('neo-tree.nvim') then
   autocmd('TermClose', {
     pattern = '*lazygit',
     desc = 'Refresh Neo-Tree git when closing lazygit',
-    group = augroup('neotree_git_refresh', { clear = true }),
+    group = augroup('neotree_git_refresh'),
     callback = function()
       if package.loaded['neo-tree.sources.git_status'] then
         require('neo-tree.sources.git_status').refresh()
