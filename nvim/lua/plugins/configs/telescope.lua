@@ -1,4 +1,6 @@
-return function()
+local M = {}
+
+M.opts = function()
   local actions = require('telescope.actions')
   local mappings = {
     i = {
@@ -34,3 +36,16 @@ return function()
     },
   }
 end
+
+M.config = function(_, opts)
+  local telescope = require('telescope')
+  telescope.setup(opts)
+
+  local utils = require('core.utils')
+
+  if utils.has('telescope-fzf-native.nvim') then
+    telescope.load_extension('fzf')
+  end
+end
+
+return M

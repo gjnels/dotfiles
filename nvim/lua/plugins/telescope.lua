@@ -7,13 +7,11 @@ return {
       {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
-        cond = function()
-          return vim.fn.executable('make') == 1
-        end,
+        enabled = vim.fn.executable('make') == 1,
       },
     },
     cmd = 'Telescope',
-    opts = require('plugins.configs.telescope.opts'),
-    config = require('plugins.configs.telescope.config'),
+    opts = require('plugins.configs.telescope').opts,
+    config = require('plugins.configs.telescope').config,
   },
 }
