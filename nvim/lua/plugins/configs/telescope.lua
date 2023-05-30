@@ -24,16 +24,19 @@ M.opts = function()
       layout_config = {
         horizontal = {
           prompt_position = 'top',
-          preview_width = 0.6,
+          preview_width = 0.5,
         },
         vertical = {
           mirror = false,
         },
-        width = 0.9,
-        height = 0.8,
-        preview_cutoff = 120,
       },
     },
+    pickers = {
+      current_buffer_fuzzy_find = {
+        theme = 'dropdown',
+        previewer = false,
+      }
+    }
   }
 end
 
