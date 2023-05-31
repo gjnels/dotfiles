@@ -3,7 +3,7 @@ local augroup = function (name, opts)
   vim.api.nvim_create_augroup(name, opts)
 end
 local autocmd = vim.api.nvim_create_autocmd
-local Util = require('core.utils')
+local utils = require('utils')
 
 autocmd('TextYankPost', {
   desc = 'Highlight on yank',
@@ -21,7 +21,7 @@ autocmd('BufWinEnter', {
     local filetype = vim.api.nvim_get_option_value('filetype', { buf = event.buf })
     local buftype = vim.api.nvim_get_option_value('buftype', { buf = event.buf })
     if buftype == 'nofile' or filetype == 'help' then
-      Util.map('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true, nowait = true })
+      utils.map('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true, nowait = true })
     end
   end,
 })
@@ -112,7 +112,7 @@ autocmd('BufEnter', {
   end,
 })
 
-if Util.has('alpha-nvim') then
+if utils.has('alpha-nvim') then
   local group_name = augroup('dashboard_settings')
   autocmd({ 'User', 'BufEnter' }, {
     desc = 'Disable status and tablines for alpha',
@@ -158,7 +158,7 @@ if Util.has('alpha-nvim') then
   })
 end
 
-if Util.has('neo-tree.nvim') then
+if utils.has('neo-tree.nvim') then
   autocmd('BufEnter', {
     desc = 'Open Neo-Tree on startup with directory',
     group = augroup('neotree_start'),

@@ -1,8 +1,8 @@
 for _, source in ipairs({
-  'core.options',
-  'core.lazy',
-  'core.autocmds',
-  'core.keymaps',
+  'config.options',
+  'config.lazy',
+  'config.autocmds',
+  'config.keymaps',
 }) do
   local ok, err = pcall(require, source)
   if not ok then

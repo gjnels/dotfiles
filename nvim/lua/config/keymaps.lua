@@ -1,4 +1,4 @@
-local utils = require('core.utils')
+local utils = require('utils')
 
 -- Remove default space mapping (space is set to leader key)
 utils.map({ 'n', 'v' }, '<Space>', '<Nop>')

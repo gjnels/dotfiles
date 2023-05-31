@@ -13,7 +13,7 @@ M.opts = function()
       ['q'] = actions.close,
     },
   }
-  local get_icon = require('core.utils').get_icon
+  local get_icon = require('utils').get_icon
   return {
     defaults = {
       mappings = mappings,
@@ -44,7 +44,7 @@ M.config = function(_, opts)
   local telescope = require('telescope')
   telescope.setup(opts)
 
-  local utils = require('core.utils')
+  local utils = require('utils')
 
   if utils.has('telescope-fzf-native.nvim') then
     telescope.load_extension('fzf')

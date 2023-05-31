@@ -13,7 +13,7 @@ function M.get_icon(icon, padding)
   -- early return if icons are disabled
   if not vim.g.icons_enabled then return '' end
   -- load icons
-  if not M.icons then M.icons = require('core.icons') end
+  if not M.icons then M.icons = require('config.icons') end
   -- fetch icon
   local found_icon = M.icons[icon]
   -- add padding to icon if found
