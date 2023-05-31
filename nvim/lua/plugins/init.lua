@@ -80,14 +80,4 @@ return {
       show_trailing_blankline_indent = false,
     },
   },
-
-  {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'JoosepAlviste/nvim-ts-context-commentstring',
-    },
-    build = ':TSUpdate',
-  },
 }
