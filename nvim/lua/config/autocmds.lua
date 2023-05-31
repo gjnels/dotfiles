@@ -1,4 +1,4 @@
-local augroup = function (name, opts)
+local augroup = function(name, opts)
   opts = opts or {}
   vim.api.nvim_create_augroup(name, opts)
 end
@@ -9,9 +9,7 @@ autocmd('TextYankPost', {
   desc = 'Highlight on yank',
   group = augroup('yank_highlight'),
   pattern = '*',
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = function() vim.highlight.on_yank() end,
 })
 
 autocmd('BufWinEnter', {
@@ -35,12 +33,10 @@ autocmd('BufWinEnter', {
 
     -- Run guess-indent (default to editorconfig)
     local gi_loaded, _ = pcall(require, 'guess-indent')
-    if gi_loaded then
-      vim.cmd.GuessIndent({
-        args = { 'auto_cmd' },
-        mods = { silent = true },
-      })
-    end
+    if gi_loaded then vim.cmd.GuessIndent({
+      args = { 'auto_cmd' },
+      mods = { silent = true },
+    }) end
   end,
 })
 
@@ -86,9 +82,7 @@ autocmd('BufEnter', {
   callback = function()
     local wins = vim.api.nvim_tabpage_list_wins(0)
     -- Both neo-tree and aerial will auto-quit if there is only a single window left
-    if #wins <= 1 then
-      return
-    end
+    if #wins <= 1 then return end
     local sidebar_fts = { aerial = true, ['neo-tree'] = true }
     for _, winid in ipairs(wins) do
       if vim.api.nvim_win_is_valid(winid) then
@@ -151,9 +145,7 @@ if utils.has('alpha-nvim') then
           end
         end
       end
-      if not should_skip then
-        require('alpha').start(true, require('alpha').default_config)
-      end
+      if not should_skip then require('alpha').start(true, require('alpha').default_config) end
     end,
   })
 end
@@ -179,9 +171,7 @@ if utils.has('neo-tree.nvim') then
     desc = 'Refresh Neo-Tree git when closing lazygit',
     group = augroup('neotree_git_refresh'),
     callback = function()
-      if package.loaded['neo-tree.sources.git_status'] then
-        require('neo-tree.sources.git_status').refresh()
-      end
+      if package.loaded['neo-tree.sources.git_status'] then require('neo-tree.sources.git_status').refresh() end
     end,
   })
 end
@@ -190,9 +180,7 @@ autocmd({ 'BufWritePre' }, {
   group = augroup('auto_create_dir'),
   desc = 'Create intermediate directories on save if they do not exist',
   callback = function(event)
-    if event.match:match('^%w%w+://') then
-      return
-    end
+    if event.match:match('^%w%w+://') then return end
     local file = vim.loop.fs_realpath(event.match) or event.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
