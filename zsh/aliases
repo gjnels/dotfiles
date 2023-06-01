@@ -50,7 +50,7 @@ if [[ $(command -v exa) ]]; then
     common="-a --icons --git -s type"
     alias ls="exa -1 $common"
     alias ll="exa -l --header $common"
-    alias lt="exa --tree $common"
+    alias lt="exa --tree $common -I \".git\""
 fi
 
 #---------------------------------------
