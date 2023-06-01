@@ -49,7 +49,7 @@ local options = {
     shiftwidth = 0, -- default to tabstop value
     softtabstop = -1, -- default to tabstop value
     tabstop = 2, -- number of spaces in a tab
-    wrap = false, -- disable wrapping of lines longer than window width
+    wrap = true, -- enable wrapping of lines longer than window width
 
     -- Line numbers
     number = true, -- show line numbers
