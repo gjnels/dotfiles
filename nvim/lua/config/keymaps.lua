@@ -123,5 +123,18 @@ end
 -- Exit insert mode
 keymaps.i['jk'] = { '<esc>', desc = 'Exit insert mode' }
 
+-- Better enter key behavior with completion
+keymaps.i['<cr>'] = {
+  function()
+    local popup_info = vim.fn.complete_info({ 'mode', 'selected' })
+    if popup_info.mode ~= '' and popup_info.selected == -1 then
+      return '<c-e><cr>'
+    else
+      return '<cr>'
+    end
+  end,
+  silent = true,
+}
+
 -- Set all keymaps
 utils.set_mappings(keymaps)
