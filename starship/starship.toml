@@ -1,20 +1,6 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-
-# Sets user-defined palette
-# palette = "catppuccin_macchiato"
-
-right_format = '$time'
-
-[time]
-disabled = false
-style = 'bold sky'
-format = '[󰥔](bold green) [$time]($style)'
-
-# [line_break]
-# disabled = true
-
 [aws]
 symbol = "  "
 
@@ -32,8 +18,6 @@ symbol = " "
 
 [directory]
 read_only = " "
-truncation_length = 4
-style = "bold blue"
 
 [docker_context]
 symbol = " "
