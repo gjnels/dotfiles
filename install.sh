@@ -27,13 +27,6 @@ echo "Workspace directory: $WORKSPACE"
 echo ""
 
 #-------------------------------------------------------------------------------
-#-- Neovim
-
-rm -rf "$XDG_CONFIG_HOME/nvim"
-ln -s "$DOTFILES/nvim" "$XDG_CONFIG_HOME"
-status "Neovim" "$XDG_CONFIG_HOME/nvim"
-
-#-------------------------------------------------------------------------------
 #-- Zsh
 
 ZSH_DIR="$XDG_CONFIG_HOME/zsh"
@@ -51,29 +44,6 @@ rm -rf "$GIT_DIR"
 ln -s "$DOTFILES/git" "$XDG_CONFIG_HOME"
 
 status "Git" "$GIT_DIR"
-
-#-------------------------------------------------------------------------------
-#-- Tmux
-
-TMUX_DIR="$XDG_CONFIG_HOME/tmux"
-mkdir -p "$TMUX_DIR"
-ln -sf "$DOTFILES/tmux/tmux.conf" "$XDG_CONFIG_HOME/tmux/tmux.conf"
-
-# install tmux plugin manager if not already installed
-[ ! -d "$XDG_CONFIG_HOME/tmux/plugins/tpm" ] &&
-	git clone https://github.com/tmux-plugins/tpm \
-		"$XDG_CONFIG_HOME/tmux/plugins/tpm"
-
-status "Tmux" "$TMUX_DIR"
-
-#-------------------------------------------------------------------------------
-#-- Tmuxp
-
-TMUXP_DIR="$XDG_CONFIG_HOME/tmuxp"
-rm -rf "$TMUXP_DIR"
-ln -s "$DOTFILES/tmuxp" "$XDG_CONFIG_HOME"
-
-status "Tmuxp" "$TMUXP_DIR"
 
 #-------------------------------------------------------------------------------
 #-- Starship Prompt
