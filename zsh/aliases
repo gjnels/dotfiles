@@ -55,12 +55,16 @@ fi
 
 #---------------------------------------
 #-- Safer Copy/Move/Remove
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias rm='rm -iv'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
 
 #---------------------------------------
 # Grep
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+#---------------------------------------
+# Python
+alias py="python3"
