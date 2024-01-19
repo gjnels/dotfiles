@@ -1,14 +1,10 @@
 #-- Zsh Configuration
 #-- symlink: $HOME/.config/zsh/.zshrc
 
-
-
 #-------------------------------------------------------------------------------
 #-- External Path
 
 fpath=($DOTFILES/zsh/external $fpath)
-
-
 
 #-------------------------------------------------------------------------------
 #-- Zsh Options
@@ -26,33 +22,20 @@ setopt PUSHD_IGNORE_DUPS
 # Do not print the directory stack after pushd or popd
 setopt PUSHD_SILENT
 
-
-
 #-------------------------------------------------------------------------------
 #-- Aliases
 
 source $DOTFILES/zsh/aliases
-
-
 
 #-------------------------------------------------------------------------------
 #-- Shell Scripts
 
 source $DOTFILES/zsh/scripts.sh
 
-
-
 #-------------------------------------------------------------------------------
-#-- Node Version Manager
-
-if [[ $(uname) == 'Darwin' ]]; then
-    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"                                       # This loads nvm
-    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
-else
-    source /usr/share/nvm/init-nvm.sh
-fi
-
-
+#-- asdf
+. "$HOME/.asdf/asdf.sh"
+fpath=(${ASDF_DIR}/completions $fpath)
 
 #-------------------------------------------------------------------------------
 #-- Zsh Completions
@@ -70,8 +53,6 @@ _comp_options+=(globdots)
 # Load completion styles
 source ~/dotfiles/zsh/external/completion.zsh
 
-
-
 #-------------------------------------------------------------------------------
 #-- fzf Completions
 
@@ -79,10 +60,10 @@ if [ $(command -v "fzf") ]; then
     if [[ $(uname) == "Linux" ]]; then
         source /usr/share/fzf/completion.zsh
         source /usr/share/fzf/key-bindings.zsh
+    else
+        [ -f ~/.fzf.zsh ] && source $DOTFILES/zsh/.fzf.zsh
     fi
 fi
-
-
 
 #-------------------------------------------------------------------------------
 #-- Vim Keybindings
@@ -106,16 +87,12 @@ zle -N edit-command-line
 # Launch editor with v in NORMAL mode
 bindkey -M vicmd v edit-command-line
 
-
-
 #-------------------------------------------------------------------------------
 #-- Start i3 Automatically
 
 if [ "$(tty)" = "/dev/tty1" ]; then
     pgrep i3 || exec startx "$XDG_CONFIG_HOME/X11/.xinitrc" -- vt1 &>/dev/null
 fi
-
-
 
 #-------------------------------------------------------------------------------
 #-- pnpm Path
@@ -125,12 +102,11 @@ case ":$PATH:" in
     *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-
-
 #-------------------------------------------------------------------------------
 #-- Prompt
 
 eval "$(starship init zsh)"
+
 #-------------------------------------------------------------------------------
 #-- Syntax Highlighting
 
