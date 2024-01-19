@@ -1,8 +1,6 @@
 #-- Zsh Environment Variables
 #-- symlink: $HOME/.zshenv
 
-
-
 #-------------------------------------------------------------------------------
 #-- XDG Base Directory
 
@@ -18,15 +16,11 @@ export XDG_STATE_HOME="$XDG_CONFIG_HOME/local/state"
 # for cached files
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 
-
-
 #-------------------------------------------------------------------------------
 #-- Editors
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-
-
 
 #-------------------------------------------------------------------------------
 #-- Zsh
@@ -40,8 +34,6 @@ export HISTSIZE=10000
 # maximum events in history file
 export SAVEHIST=10000
 
-
-
 #-------------------------------------------------------------------------------
 #-- Workspace Directory
 
@@ -49,14 +41,10 @@ export SAVEHIST=10000
 
 export WORKSPACE="$HOME/workspace"
 
-
-
 #-------------------------------------------------------------------------------
 #-- Dotfiles Repository
 
 export DOTFILES="$HOME/dotfiles"
-
-
 
 #-------------------------------------------------------------------------------
 #-- Use ripgrep With fzf
@@ -64,13 +52,9 @@ export DOTFILES="$HOME/dotfiles"
 export FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-
-
 #-------------------------------------------------------------------------------
 #-- Node Version Manager
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-
-
 
 #-------------------------------------------------------------------------------
 #-- Homebrew Path (macos only)
@@ -78,8 +62,6 @@ export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 if [[ $(uname) == "Darwin" ]]; then
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 fi
-
-
 
 #-------------------------------------------------------------------------------
 #-- Starship Prompt
