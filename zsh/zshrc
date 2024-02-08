@@ -33,11 +33,6 @@ source $DOTFILES/zsh/aliases
 source $DOTFILES/zsh/scripts.sh
 
 #-------------------------------------------------------------------------------
-#-- asdf
-. "$HOME/.asdf/asdf.sh"
-fpath=(${ASDF_DIR}/completions $fpath)
-
-#-------------------------------------------------------------------------------
 #-- Zsh Completions
 
 # Load zsh-completions for more completion options
