@@ -45,12 +45,12 @@ alias gl3="git log --graph --abbrev-commit --decorate --format=format:'%C(bold b
 alias ls="ls --color=auto"
 alias ll="ls -lAh --color=auto"
 
-# use exa if installed
-if [[ $(command -v exa) ]]; then
+# use eza if installed
+if [[ $(command -v eza) ]]; then
     common="-a --icons --git -s type"
-    alias ls="exa -1 $common"
-    alias ll="exa -l --header $common"
-    alias lt="exa --tree $common -I \".git\""
+    alias ls="eza -1 $common"
+    alias ll="eza -l --header $common"
+    alias lt="eza --tree $common -I \".git\""
 fi
 
 #---------------------------------------
